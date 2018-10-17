@@ -18,8 +18,8 @@ tf.set_random_seed(seed)
 Data_set = numpy.loadtxt("../dataset/ThoraricSurgery.csv", delimiter=",")
 
 # 환자의 기록과 수술 결과를 X와 Y로 구분하여 저장합니다.
-X = Data_set[:,0:17]
-Y = Data_set[:,17]
+X = Data_set[:, 0:17]
+Y = Data_set[:, 17]
 
 # 딥러닝 구조를 결정합니다(모델을 설정하고 실행하는 부분입니다).
 model = Sequential()
@@ -32,5 +32,3 @@ model.fit(X, Y, epochs=30, batch_size=10)
 
 # 결과를 출력합니다.
 print("\n Accuracy: %.4f" % (model.evaluate(X, Y)[1]))
-
-
