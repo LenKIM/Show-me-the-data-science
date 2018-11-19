@@ -1,15 +1,24 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-from keras.datasets import mnist
-from keras.utils import np_utils
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.callbacks import ModelCheckpoint,EarlyStopping
-
-import matplotlib.pyplot as plt
-import numpy
 import os
+
+import keras.backend.tensorflow_backend as ktf
+from keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras.callbacks import TensorBoard
+from keras.datasets import mnist
+from keras.layers import Dense
+from keras.models import Sequential
+from keras.utils import np_utils
+import numpy
 import tensorflow as tf
+
+
+def get_session():
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.133, allow_growth=True, visible_device_list='0')
+    return tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+
+
+ktf.set_session(get_session())
 
 # seed 값 설정
 seed = 0
@@ -40,12 +49,16 @@ MODEL_DIR = './model/'
 if not os.path.exists(MODEL_DIR):
     os.mkdir(MODEL_DIR)
 
-modelpath="./model/{epoch:02d}-{val_loss:.4f}.hdf5"
+modelpath = "./model/{epoch:02d}-{val_loss:.4f}.hdf5"
 checkpointer = ModelCheckpoint(filepath=modelpath, monitor='val_loss', verbose=1, save_best_only=True)
 early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10)
 
+tensorboard = TensorBoard(log_dir='./logs', histogram_freq=0,
+                          write_graph=True, write_images=False)
+
 # 모델의 실행
-history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=30, batch_size=200, verbose=0, callbacks=[early_stopping_callback,checkpointer])
+history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=30, batch_size=200, verbose=0,
+                    callbacks=[early_stopping_callback, checkpointer, tensorboard])
 
 # 테스트 정확도 출력
 print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
@@ -55,16 +68,3 @@ y_vloss = history.history['val_loss']
 
 # 학습셋의 오차
 y_loss = history.history['loss']
-
-# 그래프로 표현
-x_len = numpy.arange(len(y_loss))
-plt.plot(x_len, y_vloss, marker='.', c="red", label='Testset_loss')
-plt.plot(x_len, y_loss, marker='.', c="blue", label='Trainset_loss')
-
-# 그래프에 그리드를 주고 레이블을 표시
-plt.legend(loc='upper right')
-# plt.axis([0, 20, 0, 0.35])
-plt.grid()
-plt.xlabel('epoch')
-plt.ylabel('loss')
-plt.show()
