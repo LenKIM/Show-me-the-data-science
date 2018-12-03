@@ -172,3 +172,12 @@ fabric.properties
 /.idea/compiler.xml
 /.idea/DataScience.iml
 Show-me-the-data-science.iml
+deeplearning_study_by_paper/data/t10k-images-idx3-ubyte.gz
+deeplearning_study_by_paper/data/t10k-labels-idx1-ubyte.gz
+deeplearning_study_by_paper/data/train-images-idx3-ubyte.gz
+deeplearning_study_by_paper/data/train-labels-idx1-ubyte.gz
+deeplearning-for-everyone/example/deep_code/model/00-0.1544.hdf5
+deeplearning-for-everyone/example/deep_code/model/01-0.1049.hdf5
+deeplearning-for-everyone/example/deep_code/model/02-0.0842.hdf5
+deeplearning-for-everyone/example/deep_code/model/03-0.0793.hdf5
+deeplearning-for-everyone/example/deep_code/model/04-0.0668.hdf5
