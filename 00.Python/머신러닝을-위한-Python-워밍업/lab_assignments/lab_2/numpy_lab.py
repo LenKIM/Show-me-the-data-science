@@ -1,110 +1,107 @@
 import numpy as np
 
 
-def p(msg):
-    print(msg)
-
-
 def n_size_ndarray_creation(n, dtype=np.int):
-    return np.arange(n * n).reshape(n, n).astype(dtype)
-
-
-# print(n_size_ndarray_creation(5))
-
-
-# [[ 0  1  2  3  4]
-# [ 5  6  7  8  9]
-# [10 11 12 13 14]
-# [15 16 17 18 19]
-# [20 21 22 23 24]]
+    n = n ** 2
+    return n
 
 
 def zero_or_one_or_empty_ndarray(shape, type=0, dtype=np.int):
     if type is 0:
-        return np.zeros(shape, dtype)
+        return np.zeros(shape=shape, dtype=dtype)
     elif type is 1:
-        return np.ones(shape, dtype)
-    elif type is 99:
-        return np.empty(shape, dtype)
+        return np.ones(shape=shape, dtype=dtype)
     else:
-        raise ValueError
-
-
-# p(zero_or_one_or_empty_ndarray(shape=(2, 2), type=1))
-# p(zero_or_one_or_empty_ndarray(shape=(3, 3), type=99))
+        return np.empty(shape=shape, dtype=dtype)
 
 
 def change_shape_of_ndarray(X, n_row):
-    return np.reshape(X, (n_row, -1))
+    # return np.reshape(X, [n_row, -1])
+    return X.flatten() if n_row == 1 else X.rehape(n_row, -1)
 
 
-# X = np.ones((32, 32), dtype=np.int)
-# p(change_shape_of_ndarray(X, 1))
+def concat_ndarray(X_1: np.ndarray, X_2: np.ndarray, axis):
+    # 사전에 이것이 복사가능한지 안가능한지 여부 판별은 어떻게??
+    # if axis > 1:
+    #     return False
+    # else:
+    #     try:
+    #         return np.concatenate((X_1, X_2), axis=axis)
+    #     except ValueError as e:
+    #         return False
+
+    if X_1.ndim == 1:
+        X_1 = X_1.reshape(1, -1)
+    if X_2.ndim == 1:
+        X_2 = X_2.reshape(1, -1)
+    return np.concatenate((X_1, X_2), axis=axis)
 
 
-def concat_ndarray(X_1, X_2, axis):
-    try:
-        return np.concatenate((X_1, X_2), axis=axis)
-    except ValueError:
-        return False
+def normalize_ndarray(X, axis=99, dtype=np.float32):
+    # 3가지 타입이 있음.
+    X = X.astype(np.float32)
+    n_row, n_column = X.shape
+    if axis == 99:
+        x_mean = np.mean(X)
+        x_std = np.std(X)
+        z = (X - x_mean) / x_std
+    if axis == 0:
+        x_mean = np.mean(X, 0).reshape(1, -1)
+        x_std = np.std(X, 0).reshape(1, -1)
+        z = (X - x_mean) / x_std
+    if axis == 1:
+        x_mean = np.mean(X, 0).reshape(n_row, -1)
+        x_std = np.std(X, 0).reshape(n_row, -1)
+        z = (X - x_mean) / x_std
+
+    return z
 
 
-# a = np.array([[1, 2], [3, 4]])
-# b = np.array([[5, 6]])
+# if axis == 99:
+#     avg = np.mean(X, axis=None)
+#     _std = np.std(X, axis=None)
+#     np.
+#
 
-# p(concat_ndarray(a, b, 0))
-# p(concat_ndarray(a, b, 1))
-
-
-# TODO
-def normalize_ndarray(X: np.ndarray, axis=99, dtype=np.float32):
-    # print(np.mean(X, axis=axis, dtype=dtype))
-    if axis is 99:
-        return (X - np.mean(X, axis=axis, dtype=dtype)) / np.math.sqrt(np.var(X, axis=axis, dtype=dtype))
-    else:
-        return (X - np.mean(X, axis=axis, dtype=dtype)) / np.math.sqrt(np.var(X, axis=axis, dtype=dtype))
-
-
-# X = np.arange(12, dtype=np.float32).reshape(6, 2)
-
-# print(normalize_ndarray(X, axis=0))
+# return np.linalg.norm(X, axis=None)
+# else:
+# return np.linalg.norm(X, axis=axis)
 
 
 def save_ndarray(X, filename="test.npy"):
-    np.save(file=filename, arr=X)
-
-
-# X = np.arange(32, dtype=np.float32).reshape(4, -1)
-# filename = "test.npy"
-# save_ndarray(X, filename)  # test.npy 파일이 생성됨
+    file_test = open(filename, 'wb')
+    return np.save(file_test, X)
 
 
 def boolean_index(X, condition):
-    return X[eval(str("X") + condition)]
+    # cond_arrays = condition.split(' ')
+    # operator = {
+    #     '<': lt,
+    #     '<=': le,
+    #     '==': eq,
+    #     '>=': ge,
+    #     '>': gt,
+    # }
+    # print(cond_arrays)
+    # oper = operator[cond_arrays[0]]
+    # return X[oper(X, int(cond_arrays[1]))]
+    condition = eval(str("X") + condition)
+    return np.where(condition)
 
 
-# X = np.arange(32, dtype=np.float32).reshape(4, -1)
-# print(boolean_index(X, "== 3"))
-# X = np.arange(32, dtype=np.float32)
-# print(boolean_index(X, "> 6"))
-
-
-def find_nearest_value(X: np.ndarray, target_value):
-    array = np.asarray(X)
-    idx = (np.abs(array - target_value)).argmin()
-    return array[idx]
-
-
-X = np.random.uniform(0, 1, 100)
-find_nearest_value(X, target_value=0.3)
+def find_nearest_value(X, target_value):
+    # np.argmin()
+    temp = np.abs(X - target_value)
+    idx = np.argmin(temp, axis=0)
+    return X.flat[idx]
 
 
 def get_n_largest_values(X, n):
-    array = np.asarray(X)
-    array = sorted(array, reverse=True)
-    return array[:n]
+    # argXXX -> d인텍스 뱃어냅.
+    return np.sort(X)[:n]
+
+    return X[np.argsort(X[::-1])[:n]]
 
 
-X = np.random.uniform(0, 1, 100)
-print(get_n_largest_values(X, 3))
-print(get_n_largest_values(X, 5))
+def p(_):
+    print(_)
