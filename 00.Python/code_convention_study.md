@@ -1,3 +1,5 @@
+출처 - [파이썬을 여행하는 히치하이커를 위한 안내서](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788966264070&orderClick=LAG&Kc=)
+
 # 파이썬 코드 컨벤션
 
 ***파이썬스럽다(Pythonic)*** 하다 라는 의미는 무엇인가?
