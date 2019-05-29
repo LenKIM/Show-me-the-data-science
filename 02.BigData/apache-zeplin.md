@@ -4,7 +4,7 @@
 
 [다운로드](https://zeppelin.apache.org/download.html)
 
-
+[HDFS와 Zepplin 참고사이트](https://zeppelin.apache.org/docs/0.7.0/install/cdh.html)
 
 포트포워딩 localhost:8080 localhost:8080
 
@@ -45,13 +45,12 @@ dh / dh
 
 1. cd ~(위치)/zeppelin-0.7.2-bin-all/conf
    ![](https://ws1.sinaimg.cn/large/006tNc79gy1g1ync8nw9yj30eh04igm7.jpg)
-
-2. cp zeppelin-site.xml.template zeppelin-site.xml
-
-3. cp zeppelin-env.sh.template zeppelin-env.sh
-
-4. cp shiro.ini.tenplate shiro.ini
-
+2. cp zeppelin-site.xml.template zeppelin-site.xml   
+   여기서 제플린의 PORT, ADDRESS를 설정해 줄수 있다.
+3. cp zeppelin-env.sh.template zeppelin-env.sh  
+   아래와 같은 환경변수를 설정할 수 있다.
+4. cp shiro.ini.tenplate shiro.ini  
+   계정관련 설정을 할 수 있다.
 5. vi zeppelin-env.sh
 
    - export SPARK_HOME=/usr/lib/spark
@@ -59,5 +58,8 @@ dh / dh
    - export PYTHONPATH=/usr/lib/spark/python
    - export PYSPARK_PYTHON=/usr/lib/spark/python
 
-   
+6. 제플린 UI에서   
+   ![](https://ws3.sinaimg.cn/large/006tNc79gy1g1zt14e5aoj305c07ewem.jpg)
+   Interpreter =>Spark => Properties.master 부분에  
+   만약 클라우데라매니저와 함께 YARN을 쓰고 있다면 master 부분에 yarn-client를 넣어준다.
 
