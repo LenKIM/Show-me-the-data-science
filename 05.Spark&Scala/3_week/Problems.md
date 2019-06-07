@@ -57,3 +57,56 @@
 > 함수형 프로그래밍의 아이디어에서 파생되어 Fault Tolerance가 가능하게 됩니다.
 >
 > 만약, 중간 노드가 고장난 경우 앞 뒤의 노드를 재계산하여 고장난 노드를 회복하게 만듬으로써 Fault Tolerance가 가능하도록 만듭니다.
+
+
+
+
+
+---
+
+정답
+
+> 1. 셔플링은 무엇이고 언제 발생하나요?*
+> 한 노드에서 다른 노드로 데이터가 옮겨지는 것을 셔플링이라고 하고, 네트워크 레턴시는 스파크 퍼포먼스에 영향을 많이 주기 때문에 항상 유의해야합니다. 같은 key를 가진 데이터를 옮길때도 발생하지만 데이터를 partitioning 할때도 셔플링이 발생합니다.
+
+
+
+>*2. 파티션은 무엇인가요? 파티션의 특징을 2가지 알려주세요.*
+>RDD를 key값을 기준으로 여러 노드에 나눠 저장하는 것
+- 한 파티션은 여러 machine에 걸쳐서 존재하지 않음
+- 한 머신에는 하나 또는 그 이상의 파티션이 존재할 수 있음
+
+
+
+>*3. 스파크에서 제공하는 partitioning 의 종류 두가지를 각각 설명해주세요.*
+>hash partitioning - 데이터의 해시값을 이용하는 파티션닝
+>range partitioning - 특정 구간으로 범위를 정해서하는 파티션닝
+
+
+
+>*4. 파티셔닝은 어떻게 퍼포먼스를 높여주나요?*
+>data locality를 최적화하여 많은 shuffling이 발생할 수 있는 작업을 대폭 줄일 수 있다.
+>예를 들면 pre-partitioned RDD에서 reduceByKey 를 수행하는 경우,
+>같은 partitioner로 pre-partitioned된 두개의 RDD를 join하는 경우 등은 shuffling이 발생하지 않게 된다.
+
+
+
+>*5. rdd 의 toDebugString 의 결과값은 무엇을 보여주나요?*
+>rdd에 어떤 작업들이 예약되어 있는지 계보를 보여줍니다. 이 계보를 보고 작업자는 shuffling이 발생할지 여부등을 유추할 수 있습니다.
+
+
+
+>*6. 파티션 된 rdd에 map 을 실행하면 결과물의 파티션은 어떻게 될까요? mapValues의 경우는 어떤가요?*
+>partitioned 된 rdd에 map, flatMap을 사용하면 partitioner가 유지되지 않음 (map은 key가 바꿀 수 있는 transformation이기 때문에 map 할 경우 partitioner가 유지되지 않음)
+>mapValues에서는 parent가 partitioner를 가졌을 경우 그대로 유지됨(mapValues는 key를 바꾸지 않고 map transformation을 하게 해주기 때문에 partitioner가 유지됨)
+
+
+
+>*7. Narrow Dependency 와 Wide Dependency를 설명해주세요. 각 Dependency를 만드는 operation은 무엇이 있을까요?*
+>-narrow dependency : parent RDD의 각 파티션이 child RDD의 각 파티션과 dependency가 일대일. map, filter, union, join(파티션이 되어있을때)등이 narrow dependency를 만드는 operation이다.
+>-wide dependency : parent RDD와 child RDD가 일대다 대응. groupbykey, join(파티션이 되어있지 않을때), reduceBykey 등이 있다.
+
+
+
+>*8. Lineage 는 어떻게 Fault Tolerance를 가능하게 하나요?*
+>RDD는 immutable하고, RDD를 transformation하기 위해 map, flatMap, filter 등 deterministic한 higher-order function을 사용한다. RDD 자체가 어떤 데이터셋, 어떤 function을 거쳐서 만들어졌는지 lineage 정보를 기억하고 있기 때문에 특정 partition이 문제가 생길 경우 dependency 를 추적하여 다시 계산할 수 있다.
