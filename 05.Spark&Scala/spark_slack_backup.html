@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Export Channel</title>
+  <link rel="stylesheet" href="/static/styles.css" charset="utf-8" />
+  <style media="screen">
+    body {
+      color: #333333;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    .message {
+      margin: 1em 0;
+    }
+
+    .timestamp {
+      font-size: 0.75em;
+      font-weight: 100;
+      color: #afafaf;
+      padding-right: 1em;
+    }
+
+    .attachments {
+      border-left: 3px solid #afafaf;
+      padding: 1em;
+      margin-left: 1em;
+    }
+
+    .attachment:hover {
+      opacity: 1;
+    }
+
+    .attachment {
+      margin-bottom: .5em;
+      opacity: 0.5;
+    }
+
+    .attachment-header {
+      padding: .25em;
+      border: 1px solid;
+      display: inline-block;
+      border-radius: 10px;
+      margin-bottom: 1em;
+      color: #7891FF;
+      font-size: .75em;
+    }
+
+    .attachment .title {
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h2>Channel history</h2>
+  </section>
+
+  <section>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-09T09:32:35Z</span>
+        <strong>support</strong>: 
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-09T10:20:43Z</span>
+        <strong>wanypie</strong>: &lt;@UJJLM38QY&gt; has joined the group
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-09T10:30:09Z</span>
+        <strong>realchs</strong>: &lt;@UJ77DUK0T&gt; has joined the group
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-09T13:55:21Z</span>
+        <strong>tjddn020</strong>: &lt;@UJM1LLGEA&gt; has joined the group
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-09T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 1주차 1일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-10T00:16:43Z</span>
+        <strong>seongwoon.ko</strong>: &lt;!channel&gt;
+```
+Spark with Scala 토론 진행자 고성운 입니다. 오늘부터 스터디 시작이네요! 시작하시기 전에 간단히 스터디의 목적과 커리큘럼 진행방식에 대해서 미리 설명드리려고 해요. 아마 이 중에는 아직 스파크를 접하지 못하신 분들도 계시고, 스파크를 사용하시고 계시지만 개념을 명확히 이해하고 사용하시기 위해 배우기로 정하신 분도 계실텐데요. 저희 스터디의 목적은 분산처리의 기본 개념을 이해하고, 스파크를 사용해서 의미있는 프로그램을 만드는 것 입니다. 이렇게 한번 기본 개념을 이해하시고 실제 환경에서 사용하시다 보면, 이전보다 직장이나 프로젝트에서 스파크를 사용한 문제 해결이 한결 쉬워져 있을 거에요. 다음으로, 커리큘럼 구성을 말씀드릴게요. 4주간의 커리큘럼의 1주차엔 분산처리와 Spark의 기본개념, 2주차엔 Spark의 기본 Operation, 3주차엔 Optimization, 4주차엔 스파크의 새로은 데이터스트럭쳐들을 배우고, 배운 것을 토대로 실습을 병행하면서 이론이 어떻게 적용되었는지도 같이 알아가려고 해요. 이 스터디를 진행할때 분산처리 개념은 그렇게 어렵지 않지만, 개개인의 프로그램밍 실력은 개개인의 차이가 있을텐데요. 때문에 프로그래밍 경험이 적어서 IDE (IntelliJ, Eclipse) 세팅이 어색하시고 어려우시다면 databricks 에서 지원하는 spark UI를 사용하시는 것을 추천 드려요 (공짜입니다 &lt;https://databricks.com/signup#signup/community&gt;). IDE를 사용하실 분들은 IntelliJ를 추천 드리구요. 개발환경 세팅이나 scala 과제 진행중에 막힌다면 어떤 문제든 이 채널에 공유해 주세요. 내가 해결한 문제는 다른사람에게 도움이 되고, 아마 혼자 고민하시는 것 보다 빨리 문제를 해결하실 거에요. 저도 빠른 시간안에 답변 드리드록 할것 입니다. &#34;빨리 가려면 혼자가고, 멀리 가려면 함께 가라&#34;라는 아프리카 속담이 있습니다. 혼자하는 고민을 공유하고, 서로 도우면서 같이 공부하고 과제를 해결하다 보면 저희는 어느새 빅데이터도 데스크탑에서 List 다루듯 다루게 되어있을 겁니다. 어려워도 끝까지 같이 해봐요! 4주 동안 잘 부탁드립니다!
+
+스터디 계획하면서 이런 저런 자료들 찾아봤는데 이 강의만큼 내용이나 실용성에서 잘되어 있는게 없어서 불편함을 감수하더라도 양질의 강의를 선택했습니다^^.  아쉬운대로 제가 일주일치 슬라이드들 30~45분정도로 요약한 비디오 공유드리도록 하겠습니다 (목소리만 나올 예정입니다..).
+```
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-10T02:22:02Z</span>
+        <strong>jieun.kim</strong>: &lt;@UJK1ZHX6G&gt; has joined the group
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-10T05:00:06Z</span>
+        <strong></strong>: 1주차 1일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-10T22:30:05Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 1주차 2일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-11T05:00:09Z</span>
+        <strong></strong>: 1주차 2일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-11T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 1주차 3일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-12T05:00:08Z</span>
+        <strong></strong>: 1주차 3일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-12T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 1주차 4일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-13T05:00:07Z</span>
+        <strong></strong>: 1주차 4일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-13T22:30:05Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 1주차 5일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-14T05:00:06Z</span>
+        <strong></strong>: 1주차 5일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-14T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 1주차 6일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:43:05Z</span>
+        <strong>jieun.kim</strong>: &lt;@UDFNG5AE7&gt; 궁금한게, RDD에서 Lazy, Eager 실행이 있으면, Dataframe에서도 동일하게 적용되는걸까요?
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:45:45Z</span>
+        <strong>seongwoon.ko</strong>: 네 Lazy/Eager실행은 operation 별로 나뉘기 때문에 (예 리턴 타입이 RDD 나 DataFrame의 경우 lazy, 아닌경우 Eager) 분산데이터스트럭쳐와 (RDD냐 혹은 Dataframe이냐) 상관없이 동일하게 적용됩니다.
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:46:32Z</span>
+        <strong>seongwoon.ko</strong>: &lt;@UJK1ZHX6G&gt; 코스 진행하시는데 어려운점은 없으신가요?
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:47:27Z</span>
+        <strong>jieun.kim</strong>: &lt;@UDFNG5AE7&gt; 네네, 영어로 된건 스크립트 구글 번역해서 참고하고, 번역된 스크립트로 동영상 같이 보고있어요~
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:48:20Z</span>
+        <strong>jieun.kim</strong>: 그러면, 혹시 Dataframe을 쓰는 이유는 RDD보다 좀 더 유연하게 데이터를 가공할 수 있기 때문일까요?
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:55:24Z</span>
+        <strong>seongwoon.ko</strong>: 데이터프레임을 쓰는 가장 큰 장점은 성능입니다.
+RDD는 어떤 데이터를 저장하는지 크게 관계없이 데이터를 처리할 수 있어서 오히려 데이터 가공면에서 유연하고요.
+DataFrame은 SQL DB처럼 스키마를 정의해서 저장하고요, 이 점을 활용하여 특정 값을 가진 record들을 가져오거나 하는 작업에서 더 좋은 성능을 보입니다.
+DataFrame과 RDD의 장점만 결합한 Dataset 이라는 데이터 스트럭쳐도 있으니 참고하시면 좋겠습니다~
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:56:24Z</span>
+        <strong>seongwoon.ko</strong>: 위 내용들은 4주차에 많이 다루게 되는데요. 혹시 미리 보셔야한다면 4주차 렉쳐슬라이드 한번 보시는 것도 추천드려요~
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T04:59:35Z</span>
+        <strong>jieun.kim</strong>: 아, 우연히 신규프로젝트와 겹쳐 스파크를 사용하고 있는 과정에 놓여있는데, 성운님께서 제시해주는 로드맵이 굉장히 도움이 많이 되고 있습니다. (진짜로.. eager, lazy 도 모르고 러프하게 시작했거든요.) 설명해 주신 부분 진심으로 감사합니다.
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T05:00:07Z</span>
+        <strong></strong>: 1주차 6일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T05:07:26Z</span>
+        <strong>seongwoon.ko</strong>: 네 질문 주셔서 감사합니다 ㅎㅎㅎ
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T07:50:06Z</span>
+        <strong>dhkdn9192</strong>: &lt;@UJCGAS0QJ&gt; has joined the group
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-15T22:30:08Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 1주차 7일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-16T00:10:51Z</span>
+        <strong>joenggyu0</strong>: &lt;@UJQU3NP29&gt; has joined the group
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-16T22:30:07Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 2주차 1일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-17T05:00:07Z</span>
+        <strong></strong>: 2주차 1일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-17T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 2주차 2일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-18T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 2주차 3일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-19T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 2주차 4일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-20T22:30:08Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 2주차 5일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-21T05:00:06Z</span>
+        <strong></strong>: 2주차 5일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-21T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 2주차 6일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-22T00:25:49Z</span>
+        <strong>jieun.kim</strong>: &lt;@UDFNG5AE7&gt; 혹시 이 문제에서 두번째 reduce는 reduceByKey를 말하고 싶은 걸까요?
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-22T00:26:57Z</span>
+        <strong>seongwoon.ko</strong>: 네 맞습니다. 수정하겠습니다~:blush::blush:
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-22T05:00:06Z</span>
+        <strong></strong>: 2주차 6일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+        
+      <div class="message">
+        <span class="timestamp">2019-05-22T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 2주차 7일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-23T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 3주차 1일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-24T05:00:12Z</span>
+        <strong></strong>: 3주차 1일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-24T22:30:07Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 3주차 2일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-25T22:30:05Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 3주차 3일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-26T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 3주차 4일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-27T05:00:05Z</span>
+        <strong></strong>: 3주차 4일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-27T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 3주차 5일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-28T22:30:07Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 3주차 6일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-29T05:00:06Z</span>
+        <strong></strong>: 3주차 6일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-29T06:04:49Z</span>
+        <strong>jieun.kim</strong>: &lt;@UDFNG5AE7&gt; 혹시 해당 장표에 대해서 다시한번 설명 부탁드려도 될까요? 요 함수를 써야되는 이유에 대해서 이해가 안되요
+&lt;http://ww3.sinaimg.cn/large/006tNc79gy1g3hysxjqhyj30m40drdmm.jpg&gt;
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-29T06:34:59Z</span>
+        <strong>jieun.kim</strong>: &lt;@UDFNG5AE7&gt; 혹시 RangePartitioner은 실제 현업에서 어떤 경우에 사용하셨는지 알려주실 수 있을까요?
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-29T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 3주차 7일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-30T00:57:46Z</span>
+        <strong>seongwoon.ko</strong>: 네 toDebugString은 rdd를 만들기 위한 트렌스포메이선이 어떤 순서로 실행될건지를 알려줍니다. 여기서 중요하게 얘기하는건 wide trandformation을 (groupByKey) 실행하기전에 실행될 narrow transformation을 (map) 보여줍니다
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-30T01:01:26Z</span>
+        <strong>seongwoon.ko</strong>: 코드의 실행순서가 내가 의도한 실행순서랑 비슷한지 확인하실때 쓰면 될 것같은데요. 개인적으론 toDebugString 아웃풋보기보다는 일단 실행시켜보고 UI에서 실행그래프 확인하는걸 선호하는 편입니다
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-30T22:30:06Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 4주차 1일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-30T23:24:24Z</span>
+        <strong>jieun.kim</strong>: 아 지금 봤습니다;; 감사합니다 ㅎㅎ &lt;@UDFNG5AE7&gt;
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-05-31T22:30:05Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 4주차 2일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-01T22:30:05Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 4주차 3일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-02T22:30:05Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 4주차 4일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-03T05:00:08Z</span>
+        <strong></strong>: 4주차 4일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-03T22:30:07Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 4주차 5일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-04T08:29:23Z</span>
+        <strong>may</strong>: &amp;gt;*3주차 답변*이 오류로 인해 누락되어 업로드 해드립니다 :pray: 죄송합니다.
+
+*1. 셔플링은 무엇이고 언제 발생하나요?*
+한 노드에서 다른 노드로 데이터가 옮겨지는 것을 셔플링이라고 하고, 네트워크 레턴시는 스파크 퍼포먼스에 영향을 많이 주기 때문에 항상 유의해야합니다. 같은 key를 가진 데이터를 옮길때도 발생하지만 데이터를 partitioning 할때도 셔플링이 발생합니다.
+
+
+
+&amp;gt;*2. 파티션은 무엇인가요? 파티션의 특징을 2가지 알려주세요.*
+RDD를 key값을 기준으로 여러 노드에 나눠 저장하는 것
+- 한 파티션은 여러 machine에 걸쳐서 존재하지 않음
+- 한 머신에는 하나 또는 그 이상의 파티션이 존재할 수 있음
+
+
+
+&amp;gt;*3. 스파크에서 제공하는 partitioning 의 종류 두가지를 각각 설명해주세요.*
+hash partitioning - 데이터의 해시값을 이용하는 파티션닝
+range partitioning - 특정 구간으로 범위를 정해서하는 파티션닝
+
+
+
+&amp;gt;*4. 파티셔닝은 어떻게 퍼포먼스를 높여주나요?*
+data locality를 최적화하여 많은 shuffling이 발생할 수 있는 작업을 대폭 줄일 수 있다.
+예를 들면 pre-partitioned RDD에서 reduceByKey 를 수행하는 경우,
+같은 partitioner로 pre-partitioned된 두개의 RDD를 join하는 경우 등은 shuffling이 발생하지 않게 된다.
+
+
+
+&amp;gt;*5. rdd 의 toDebugString 의 결과값은 무엇을 보여주나요?*
+rdd에 어떤 작업들이 예약되어 있는지 계보를 보여줍니다. 이 계보를 보고 작업자는 shuffling이 발생할지 여부등을 유추할 수 있습니다.
+
+
+
+&amp;gt;*6. 파티션 된 rdd에 map 을 실행하면 결과물의 파티션은 어떻게 될까요? mapValues의 경우는 어떤가요?*
+partitioned 된 rdd에 map, flatMap을 사용하면 partitioner가 유지되지 않음 (map은 key가 바꿀 수 있는 transformation이기 때문에 map 할 경우 partitioner가 유지되지 않음)
+mapValues에서는 parent가 partitioner를 가졌을 경우 그대로 유지됨(mapValues는 key를 바꾸지 않고 map transformation을 하게 해주기 때문에 partitioner가 유지됨)
+
+
+
+&amp;gt;*7. Narrow Dependency 와 Wide Dependency를 설명해주세요. 각 Dependency를 만드는 operation은 무엇이 있을까요?*
+-narrow dependency : parent RDD의 각 파티션이 child RDD의 각 파티션과 dependency가 일대일. map, filter, union, join(파티션이 되어있을때)등이 narrow dependency를 만드는 operation이다.
+-wide dependency : parent RDD와 child RDD가 일대다 대응. groupbykey, join(파티션이 되어있지 않을때), reduceBykey 등이 있다.
+
+
+
+&amp;gt;*8. Lineage 는 어떻게 Fault Tolerance를 가능하게 하나요?*
+RDD는 immutable하고, RDD를 transformation하기 위해 map, flatMap, filter 등 deterministic한 higher-order function을 사용한다. RDD 자체가 어떤 데이터셋, 어떤 function을 거쳐서 만들어졌는지 lineage 정보를 기억하고 있기 때문에 특정 partition이 문제가 생길 경우 dependency 를 추적하여 다시 계산할 수 있다.
+확인 후 추가 질문이 있으시면, &lt;@UDFNG5AE7&gt; 진행자님을 태그해주시고 질문 남겨주세요~ :slightly_smiling_face:
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-04T22:30:07Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 4주차 6일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-05T05:00:07Z</span>
+        <strong></strong>: 4주차 6일 알림입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-05T22:30:08Z</span>
+        <strong></strong>: 프로그래밍 &amp;gt; spark 4주차 7일 강의 커리큘럼입니다.
+        
+          <div class="attachments">
+            
+            <div class="attachment">
+              <div class="title"></div>
+              <a href="">
+                
+              </a>
+            </div>
+            
+          </div>
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-09T13:01:10Z</span>
+        <strong>seongwoon.ko</strong>: &lt;!channel&gt; 
+이렇게 마지막주차 스터디가 마무리 됩니다!
+이번주 질문이나 스파크 관련해서 궁금하신 점 있으시면 언제든지 문의 주셔도 좋습니다. 스터디와 주간 질문들을 통해서 분산처리와 스파크에 대해서 좀 더 친숙해졌다는 느낌이 드셨길 바랍니다. 한분한분 다들 열심히 해주셔서 감사합니다!!!
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-09T13:01:55Z</span>
+        <strong>jieun.kim</strong>: &lt;@UDFNG5AE7&gt; 감사합니다! 궁금한점있으면 여기 슬랙말고 다른 채널로 물어봐도 되는 걸까요?
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-09T13:03:34Z</span>
+        <strong>seongwoon.ko</strong>: 아 넵 DM 주시거나 이메일로 (&lt;mailto:seongwoon.ko@gmail.com|seongwoon.ko@gmail.com&gt;) 질문 주셔도 괜찮습니다. 
+        
+      </div>
+    
+      <div class="message">
+        <span class="timestamp">2019-06-09T13:14:09Z</span>
+        <strong>jieun.kim</strong>: &lt;@UDFNG5AE7&gt; 감사합니다!
+        
+      </div>
+    
+  </section>
+</body>
+</html>
