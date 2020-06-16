@@ -18,10 +18,8 @@ https://people.apache.org/~pwendell/spark-nightly/spark-master-docs/latest/api/s
 
 
 
-워크 디테일하게.
+SPARK 
 
-디비 특정일 가져와서 데이터 뽑은걸로하자.
+https://spark.apache.org/docs/latest/running-on-yarn.html
 
-키바나 분석 한거, 제플린에서 이런 결과
-
-DO에서 통계적으로 필요한 테이블 / 
+https://zeppelin.apache.org/docs/latest/interpreter/spark.html

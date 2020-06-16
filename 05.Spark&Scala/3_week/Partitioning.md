@@ -6,7 +6,7 @@
 
 # Partitioning
 
-![image-20190524172340790](https://ws3.sinaimg.cn/large/006tNc79gy1g3chfrnui0j30ni0e1tek.jpg)
+![image-20190524172340790](https://ww3.sinaimg.cn/large/006tNc79gy1g3chfrnui0j30ni0e1tek.jpg)
 
 
 
@@ -16,7 +16,7 @@
 
 ***중요한 것은 Customizing a Partitioning is only possible on Pair RDDs.***
 
-![image-20190524172419400](https://ws2.sinaimg.cn/large/006tNc79gy1g3chgfcky5j30lu0e7jx9.jpg)
+![image-20190524172419400](https://ww2.sinaimg.cn/large/006tNc79gy1g3chgfcky5j30lu0e7jx9.jpg)
 
 
 
@@ -26,7 +26,7 @@
 
 같은 파티션을 가진 튜플들은 동일안 머신에 들어간다.,
 
-![image-20190524172753052](https://ws2.sinaimg.cn/large/006tNc79gy1g3chk4tkbrj30m50e4dl7.jpg)
+![image-20190524172753052](https://ww2.sinaimg.cn/large/006tNc79gy1g3chk4tkbrj30m50e4dl7.jpg)
 
 그래서 Hash partitioning은 균등하게 데이터가 들어가도록 시도한다.
 
@@ -36,7 +36,7 @@
 
 튜플에 같은 레인지를 가진 키들은 같은 머신에 들어간다.
 
-![image-20190524172846422](https://ws4.sinaimg.cn/large/006tNc79gy1g3chl26px1j30mb0clgpr.jpg)
+![image-20190524172846422](https://ww4.sinaimg.cn/large/006tNc79gy1g3chl26px1j30mb0clgpr.jpg)
 
 
 
@@ -44,7 +44,7 @@
 
 **Hash Partitioning에 각 키들을 4로 나눴을 때, 많은 키값들이 4로 나눠져 Partition 0 으로 몰리는 문제가 발생한다.**
 
-![image-20190524173040643](https://ws2.sinaimg.cn/large/006tNc79gy1g3chn1bl3zj30ly0d2n2n.jpg)
+![image-20190524173040643](https://ww2.sinaimg.cn/large/006tNc79gy1g3chn1bl3zj30ly0d2n2n.jpg)
 
 
 
@@ -52,19 +52,19 @@
 
 균등하지 않은 문제를 Range Partitioning을 활용하여 해결 할 수 있다.
 
-![image-20190524173357099](https://ws1.sinaimg.cn/large/006tNc79gy1g3chqj3855j30mp0edgqq.jpg)
+![image-20190524173357099](https://ww1.sinaimg.cn/large/006tNc79gy1g3chqj3855j30mp0edgqq.jpg)
 
 
 
 **그럼 어떻게 우리들의 데이터를 파티셔닝 할 수 있는가?**
 
-![image-20190527170547008](https://ws2.sinaimg.cn/large/006tNc79gy1g3fxs3vtf3j30s50g8afo.jpg)
+![image-20190527170547008](https://ww2.sinaimg.cn/large/006tNc79gy1g3fxs3vtf3j30s50g8afo.jpg)
 
 
 
 **여러번의 RangePartitioner을 쓰기 위해서는 꼭 Persisted를 해야 한다.**
 
-  ![image-20190527170841381](https://ws4.sinaimg.cn/large/006tNc79gy1g3fxv3ekw1j30qq0i8akp.jpg)
+  ![image-20190527170841381](https://ww4.sinaimg.cn/large/006tNc79gy1g3fxv3ekw1j30qq0i8akp.jpg)
 
 
 
@@ -72,7 +72,7 @@
 
  
 
-![image-20190527171600417](https://ws4.sinaimg.cn/large/006tNc79gy1g3fy2pcjfpj30qb0gztga.jpg)
+![image-20190527171600417](https://ww4.sinaimg.cn/large/006tNc79gy1g3fy2pcjfpj30qb0gztga.jpg)
 
 자동으로 Set되는 경우의 Partitioner 함수가 있다.
 
@@ -80,13 +80,13 @@
 
 **파티셔널을 일으키는 함수들은 아래와 같다.**
 
-![image-20190527171633470](https://ws1.sinaimg.cn/large/006tNc79gy1g3fy39r80fj30p80g0q9o.jpg)
+![image-20190527171633470](https://ww1.sinaimg.cn/large/006tNc79gy1g3fy39r80fj30p80g0q9o.jpg)
 
 
 
 Map을 해서 Key값을 변경해줄 수 있는데~
 
-![image-20190527171858139](https://ws3.sinaimg.cn/large/006tNc79gy1g3fy5sufhoj30q909wtcu.jpg)
+![image-20190527171858139](https://ww3.sinaimg.cn/large/006tNc79gy1g3fy5sufhoj30q909wtcu.jpg)
 
 
 
@@ -94,7 +94,7 @@ Map을 해서 Key값을 변경해줄 수 있는데~
 
 왜냐하면, Key가 변경될 수 있기 때문에!
 
-![image-20190527171934883](https://ws1.sinaimg.cn/large/006tNc79gy1g3fy6fdqb8j30q30gtwp4.jpg)
+![image-20190527171934883](https://ww1.sinaimg.cn/large/006tNc79gy1g3fy6fdqb8j30q30gtwp4.jpg)
 
 그래서 Key 값이 변경되지 않는 MapValue을 쓰는 것이 용이하다.
 

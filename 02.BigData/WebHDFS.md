@@ -35,9 +35,3 @@ create mkdir은
 ![](https://ws4.sinaimg.cn/large/006tNc79gy1g1ykb3kx0oj30qd07amyk.jpg)
 
 
-
-
-
-이제 Zepplin에서 pySpark를 써서 HDFS를 가져오는 코드 작성해보기.
-
-Using PySpark, you can work with **RDDs** in Python programming language also. It is because of a library called **Py4j** that they are able to achieve this.

@@ -24,7 +24,7 @@
 
 https://stackoverflow.com/questions/43364432/spark-difference-between-reducebykey-vs-groupbykey-vs-aggregatebykey-vs-combineb
 
-![image-20190522091753145](https://ws4.sinaimg.cn/large/006tNc79gy1g39s5pqf8fj31670cv782.jpg)
+![image-20190522091753145](https://ww4.sinaimg.cn/large/006tNc79gy1g39s5pqf8fj31670cv782.jpg)
 
 GroupByKey vs  ReduceByKey
 
